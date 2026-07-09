@@ -13,19 +13,19 @@ resource "aws_ssm_parameter" "igw_id" {
 resource "aws_ssm_parameter" "public_subnet_ids" {
     name = "${local.common_name}_public_subnet_ids"
     type = "StringList"
-    value = join(",", aws_subnet.public.id)
+    value = join(",", aws_subnet.public[*].id)
 }
 
 resource "aws_ssm_parameter" "private_subnet_ids" {
     name = "${local.common_name}_private_subnet_ids"
     type = "StringList"
-    value = join(",", aws_subnet.private.id)
+    value = join(",", aws_subnet.private[*].id)
 }
 
 resource "aws_ssm_parameter" "database_subnet_ids" {
     name = "${local.common_name}_database_subnet_ids"
     type = "StringList"
-    value = join(",", aws_subnet.database.id)
+    value = join(",", aws_subnet.database[*].id)
 }
 
 resource "aws_ssm_parameter" "public_route_table_id" {
