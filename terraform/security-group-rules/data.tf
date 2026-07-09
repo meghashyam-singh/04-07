@@ -18,6 +18,10 @@ data "aws_ssm_parameter" "payment_sg_id" {
     name = "${local.common_name}_payment_sg_id"
 }
 
+data "aws_ssm_parameter" "frontend_sg_id" {
+    name = "${local.common_name}_frontend_sg_id"
+}
+
 data "aws_ssm_parameter" "bastion_sg_id" {
     name = "${local.common_name}_bastion_sg_id"
 }
