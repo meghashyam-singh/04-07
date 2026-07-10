@@ -25,7 +25,7 @@ spec:
       project: roboshop
       tier: db
       component: redis
-  templates:
+  template:
     metadata:
       labels:
         project: roboshop
