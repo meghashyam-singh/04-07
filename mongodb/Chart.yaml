@@ -1,0 +1,5 @@
+apiVersion: v2
+name: mongodb-helm-chart
+version: 1.0.0
+appVersion: 1.1.1
+description: "deploying mongodb database service with k8s and helm"
