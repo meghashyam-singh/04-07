@@ -100,7 +100,7 @@ metadata:
   name: mysql-service
   namespace: roboshop
 spec:
-  type: {{ .values.service.type }}
+  type: {{ .Values.service.type }}
   selector:
     project: roboshop
     tier: db
