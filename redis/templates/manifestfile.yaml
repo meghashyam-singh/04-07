@@ -8,72 +8,72 @@ reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 
 ---
-  apiVersion: apps/v1
-  kind: StatefulSet
-  metadata:
-    name: redis
-    namespace: roboshop
-    labels:
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+  namespace: roboshop
+  labels:
+    project: roboshop
+    tier: db
+    component: redis
+spec:
+  serviceName: redis-headless-service
+  replicas: 1
+  selector:
+    matchLabels:
       project: roboshop
       tier: db
       component: redis
-  spec:
-    serviceName: redis-headless-service
-    replicas: 1
-    selector:
-      matchLabels:
+  templates:
+    metadata:
+      labels:
         project: roboshop
         tier: db
         component: redis
-    templates:
-      metadata:
-        labels:
-          project: roboshop
-          tier: db
-          component: redis
-      spec:
-        serviceAccountName: redis-service-account
-        containers:
-          - name: redis-cont
-            image: "{{ .Values.statefulset.image }}:{{ .Values.statefulset.imagetag }}"
-            imagePullPolicy: Always
-            ports:
-              - containerPort: 6379
-                name: redis-port
-            resources:
-              requests:
-                cpu: "200m"
-                memory: "128Mi"
-              limits:
-                cpu: "500m"
-                memory: "512Mi"
-            readinessProbe:
-              tcpSocket:
-                port: redis-port
-              failureThreshold: 2
-              initialDelaySeconds: 40
-              periodSeconds: 40
-              timeoutSeconds: 20
-            livenessProbe:
-              tcpSocket:
-                port: redis-port
-              failureThreshold: 2
-              initialDelaySeconds: 40
-              periodSeconds: 40
-              timeoutSeconds: 20
-            volumeMounts:
-              - name: redis-pvc
-                mountPath: /data
-    volumeClaimTemplates:
-      - metadata:
-          name: redis-pvc
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          storageClassName: redis-storage
+    spec:
+      serviceAccountName: redis-service-account
+      containers:
+        - name: redis-cont
+          image: "{{ .Values.statefulset.image }}:{{ .Values.statefulset.imagetag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 6379
+              name: redis-port
           resources:
             requests:
-              storage: "5Gi"
+              cpu: "200m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          readinessProbe:
+            tcpSocket:
+              port: redis-port
+            failureThreshold: 2
+            initialDelaySeconds: 40
+            periodSeconds: 40
+            timeoutSeconds: 20
+          livenessProbe:
+            tcpSocket:
+              port: redis-port
+            failureThreshold: 2
+            initialDelaySeconds: 40
+            periodSeconds: 40
+            timeoutSeconds: 20
+          volumeMounts:
+            - name: redis-pvc
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: redis-pvc
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: redis-storage
+        resources:
+          requests:
+            storage: "5Gi"
 
 ---
 apiVersion: v1
