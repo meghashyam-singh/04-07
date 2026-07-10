@@ -5,7 +5,6 @@ def call(Map configMap) {
                 label "AGENT-1"
             }
         }
-    }
     environment {
         GIT_URL = "${configMap.GIT_URL}"
         BRANCH = "${configMap.BRANCH}"
