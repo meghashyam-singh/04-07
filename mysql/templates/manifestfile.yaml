@@ -46,7 +46,7 @@ spec:
       serviceAccountName: mysql-service-account
       containers:
         - name: mysql-cont
-          image: "{{ .Values.statefulset.image }}:{{ .Values statefulset.imagetag }}"
+          image: "{{ .Values.statefulset.image }}:{{ .Values.statefulset.imagetag }}"
           imagePullPolicy: Always
           ports:
             - containerPort: 3306
