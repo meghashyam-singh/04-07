@@ -1,0 +1,5 @@
+apiVersion: v2
+name: catalogue
+version: 5.0.0
+appVersion: 5.5.5
+description: "deploying catalogue service with k8s and helm"
