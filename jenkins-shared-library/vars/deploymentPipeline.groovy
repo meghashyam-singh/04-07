@@ -9,6 +9,7 @@ def call(Map configMap) {
         GIT_URL = "${configMap.GIT_URL}"
         BRANCH = "${configMap.BRANCH}"
         COMPONENT = "${configMap.COMPONENT}"
+        REGION = "us-east-1"
     }
     options {
         timeout(time:15, unit: 'MINUTES')
