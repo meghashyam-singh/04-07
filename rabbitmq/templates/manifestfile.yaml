@@ -111,7 +111,7 @@ metadata:
   name: rabbitmq-headless-service
   namespace: roboshop
 spec:
-  clusterIp: None
+  clusterIP: None
   selector:
     project: roboshop
     tier: db
