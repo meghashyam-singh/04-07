@@ -8,15 +8,15 @@ reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 
 ---
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: redis
-  namespace: roboshop
-  labels:
-    project: roboshop
-    tier: db
-    component: redis
+  apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    name: redis
+    namespace: roboshop
+    labels:
+      project: roboshop
+      tier: db
+      component: redis
   spec:
     serviceName: redis-headless-service
     replicas: 1
@@ -64,16 +64,16 @@ metadata:
             volumeMounts:
               - name: redis-pvc
                 mountPath: /data
-  volumeClaimTemplates:
-    - metadata:
-        name: redis-pvc
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        storageClassName: redis-storage
-        resources:
-          requests:
-            storage: "5Gi"
+    volumeClaimTemplates:
+      - metadata:
+          name: redis-pvc
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: redis-storage
+          resources:
+            requests:
+              storage: "5Gi"
 
 ---
 apiVersion: v1
