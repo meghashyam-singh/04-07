@@ -2,4 +2,4 @@ statefulset:
   image: meghashyam792/roboshop
   imagetag: mongodb
 service:
-  type: CusterIP
+  type: ClusterIP
