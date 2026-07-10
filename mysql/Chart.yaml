@@ -1,0 +1,5 @@
+apiVersion: v2
+name: mysql-helm
+version: 3.0.0
+appVersion: 3.1.1
+description: "deploying mysql database service with k8s and helm"
