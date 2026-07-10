@@ -46,4 +46,5 @@ def call(Map configMap) {
             }
         }
     }
+    }
 }
