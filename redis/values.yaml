@@ -2,4 +2,4 @@ statefulset:
   image: meghashyam792/roboshop
   imagetag: redis
 service:
-  type: ClusterIp
+  type: ClusterIP
