@@ -27,6 +27,9 @@ def call(Map configMap) {
                     script {
                         withAWS(region:"${REGION}",credentials:'aws-creds') {
                             sh """
+                            aws eks update-kubeconfig \
+                            --region ${REGION} \
+                            --name roboshop-cluster
                             helm upgrade --install ${COMPONENT}-1.0 .
                             """
                         }
